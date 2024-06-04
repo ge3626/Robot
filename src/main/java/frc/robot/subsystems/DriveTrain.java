@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants;
 
+//TODO: drive for Guetta (not work yet)
 public class DriveTrain extends SubsystemBase{
     private final CommandXboxController m_driverController;
     private final VictorSPX m_left_front;
