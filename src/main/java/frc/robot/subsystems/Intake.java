@@ -4,20 +4,32 @@ import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
     private final VictorSPX m_intake_motor;
     private final VictorSPX m_conveyor_motor;
+    private final Solenoid m_solenoid;
 
     private Intake() {
         m_intake_motor = new VictorSPX(Constants.intake.intake_roller_id); 
         m_conveyor_motor = new VictorSPX(Constants.intake.conveyor_motor_id);
+        m_solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.intake.solenoid_id);
+    }
+
+    public void solenoid_off() {
+        m_solenoid.set(false);
+    }
+
+    public void solenoid_on() {
+        m_solenoid.set(true);
     }
     
     public void spin_stow() {
-        m_intake_motor.set(VictorSPXControlMode.PercentOutput, Constants.intake.stow_speed);
+        m_intake_motor.set(VictorSPXControlMode.PercentOutput, -Constants.intake.stow_speed);
         m_conveyor_motor.set(VictorSPXControlMode.PercentOutput, Constants.intake.stow_speed);
         set_arm_down();
     }
@@ -64,7 +76,7 @@ public class Intake extends SubsystemBase {
     private static Intake instance;
     public static Intake get_instance() {
         if(instance == null) {
-            return new Intake();
+            instance = new Intake();
         }
         return instance;
     }

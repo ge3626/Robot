@@ -1,6 +1,7 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.control_solenoid;
 import frc.robot.commands.feed;
 import frc.robot.commands.move;
 import frc.robot.commands.shoot;
@@ -15,6 +16,7 @@ public class RobotContainer {
   private final shoot shoot_command = new shoot();
   private final feed feed_command = new feed();
   private final spin_back spin_back_command = new spin_back();
+  private final control_solenoid control_solenoid_command = new control_solenoid();
   //private final move move_command = new move();
 
   private final CommandXboxController m_driverController =
@@ -29,9 +31,9 @@ public class RobotContainer {
 
   private void configureBindings() {
    // m_driverController.leftStick().whileTrue(move_command);
-    m_driverController.a().whileTrue(feed_command);
+    m_driverController.rightTrigger().whileTrue(feed_command);
     m_driverController.y().whileTrue(shoot_command);
-    m_driverController.x().whileTrue(spit_command);
+    m_driverController.x().whileTrue(control_solenoid_command);
     m_driverController.b().whileTrue(spin_back_command);
   }
 

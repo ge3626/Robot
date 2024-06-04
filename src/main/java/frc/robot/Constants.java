@@ -18,6 +18,7 @@ public final class Constants {
   public final class intake {
     public static final int intake_roller_id = 9;
     public static final int conveyor_motor_id = 10;
+    public static final int solenoid_id = 3;
     public static final double stow_speed = 0.5;
     public static final double spit_speed = 0.8;
     public static final Rotation2d pos_arm_up = Rotation2d.fromDegrees(35);
@@ -27,6 +28,6 @@ public final class Constants {
   public final class shooter {
     public static final int master_shooter_id = 1;
     public static final int slave_shooter_id = 14;
-    public static final double shoot_speed = 1; //make it faster
+    public static final double shoot_speed = 2; //make it faster
   }
 }
