@@ -16,7 +16,8 @@ public class feed extends Command{
 
     @Override
     public void initialize() {
-        m_intake.set_zeroing();
+       // m_intake.set_zeroing();
+        time.restart();
     }
 
     @Override

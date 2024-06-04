@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
-    private final VictorSPX m_roller;
+    private final VictorSPX m_roller1;
+    private final VictorSPX m_roller2;
     private final TalonFX m_arm;
 
     //Grohi setup
@@ -19,27 +20,31 @@ public class Intake extends SubsystemBase {
     private final VoltageOut m_zero_request = new VoltageOut(-1.4);
 
     private Intake() {
-        m_roller = new VictorSPX(Constants.intake.roller_id); 
+        m_roller1 = new VictorSPX(Constants.intake.roller_1); 
+        m_roller2 = new VictorSPX(Constants.intake.roller_2);
         m_arm = new TalonFX(Constants.intake.arm_id);
     }
     
     public void spin_stow() {
-        m_roller.set(VictorSPXControlMode.PercentOutput, Constants.intake.stow_speed);
+        m_roller1.set(VictorSPXControlMode.PercentOutput, -Constants.intake.stow_speed);
+        m_roller2.set(VictorSPXControlMode.PercentOutput, -Constants.intake.stow_speed);
         set_arm_down();
     }
 
     public void spin_spit() {
-        m_roller.set(VictorSPXControlMode.PercentOutput, Constants.intake.spit_speed);
+        m_roller1.set(VictorSPXControlMode.PercentOutput, Constants.intake.spit_speed);
+        m_roller2.set(VictorSPXControlMode.PercentOutput, Constants.intake.stow_speed);
         set_arm_up();
     }
 
     public void stop_spin() {
-        m_roller.set(VictorSPXControlMode.PercentOutput, 0);
+        m_roller1.set(VictorSPXControlMode.PercentOutput, 0);
+        m_roller2.set(VictorSPXControlMode.PercentOutput, 0);
     }
 
     public void disable() {
-        m_roller.set(VictorSPXControlMode.PercentOutput, 0);
-        m_arm.stopMotor();
+        m_roller1.set(VictorSPXControlMode.PercentOutput, 0);
+        m_roller2.set(VictorSPXControlMode.PercentOutput, 0);
     }
 
     //belows are not for kitbot

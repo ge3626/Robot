@@ -20,7 +20,8 @@ public class spit extends Command {
 
     @Override
     public void initialize() {
-        m_shooter.set_elevation();
+       // m_shooter.set_elevation();
+       time.restart();
     }
 
     @Override

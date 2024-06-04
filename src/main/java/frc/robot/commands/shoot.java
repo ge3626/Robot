@@ -14,10 +14,11 @@ public class shoot extends Command {
         addRequirements(m_shooter);
     }
 
-    // @Override
-    // public void initialize() {
-    //     m_shooter.set_elevation();
-    // }
+    @Override
+    public void initialize() {
+        // m_shooter.set_elevation();
+        time.restart();
+    }
 
     @Override
     public void execute() {
